@@ -5,7 +5,9 @@ public class Question1_4 {
     public static void main(String[] args) {
         String[] inputArgs = {"Tact Coa", "chicken", "hello there", "ra ce car"};
         for (String s : inputArgs) {
-            System.out.printf("%s - %b %b\n", s, hasPalinPermu1(s), isPermutationOfPalindromeS(s));
+            System.out.printf("%s - %b %b %b %b\n", s, hasPalinPermu1(s), isPermutationOfPalindromeS1(s),
+                                                                          isPermutationOfPalindromeS2(s),
+                                                                          isPermutationOfPalindromeS3(s));
         }
     }
 
@@ -30,7 +32,7 @@ public class Question1_4 {
 
     }
 
-    public static boolean isPermutationOfPalindromeS(String phrase) {
+    public static boolean isPermutationOfPalindromeS1(String phrase) {
         int[] table = buildCharFrequencyTable(phrase);
         return checkMaxOneOdd(table);
     }
@@ -72,6 +74,59 @@ public class Question1_4 {
             }
         }
         return table;
+    }
+
+    private static boolean isPermutationOfPalindromeS2(String phrase) {
+        int countOdd = 0;
+        int[] table = new int[Character.getNumericValue('z') -
+                              Character.getNumericValue('a')];
+        for (char c : phrase.toCharArray()) {
+            int x = getCharNumber(c);
+            if (x != -1) {
+                table[x]++;
+                if (table[x] % 2 == 1) {
+                    countOdd++;
+                } else {
+                    countOdd--;
+                }
+            }
+        }
+        return countOdd <= 1;
+    }
+
+    private static boolean isPermutationOfPalindromeS3(String phrase) {
+        int bitVector = createBitVector(phrase);
+        return bitVector == 0 || checkExactlyOneBitSet(bitVector);
+    }
+
+    /* Create a bit vector for the string. For each letter with value i, toggle the
+     * ith bit. */
+    private static int createBitVector(String phrase) {
+        int bitVector = 0;
+        for (char c : phrase.toCharArray()) {
+            int x = getCharNumber(c);
+            bitVector = toggle(bitVector, x);
+        }
+        return bitVector;
+    }
+
+    /* Toggle the ith bit in the integer. */
+    private static int toggle(int bitVector, int index) {
+        if (index < 0) return bitVector;
+
+        int mask = 1 << index;
+        if ((bitVector & mask) == 0) {
+            bitVector |= mask;
+        } else {
+            bitVector &= ~mask;
+        }
+        return bitVector;
+    }
+
+    /* Check that exactly one bit is set by subtracting one from the integer and
+     * ANDing it with the original integer. */
+    private static boolean checkExactlyOneBitSet(int bitVector) {
+        return (bitVector & (bitVector - 1)) == 0;
     }
 
 }
