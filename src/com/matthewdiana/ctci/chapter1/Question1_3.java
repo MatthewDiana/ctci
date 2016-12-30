@@ -13,7 +13,7 @@ public class Question1_3 {
         char[] anotherOrigArr = inputArg.clone();
         urlify2(anotherOrigArr, 13);
         char[] yetAnotherOrigArr = inputArg.clone();
-        replaceSpaces(yetAnotherOrigArr, 13);
+        replaceSpacesS1(yetAnotherOrigArr, 13);
         System.out.printf("%s:\n\t%s\n\t%s\n\t%s\n", Arrays.toString(inputArg),
                 Arrays.toString(origArr),
                 Arrays.toString(anotherOrigArr),
@@ -56,7 +56,7 @@ public class Question1_3 {
         }
     }
 
-    public static void replaceSpaces(char[] str, int trueLength) {
+    public static void replaceSpacesS1(char[] str, int trueLength) {
         int spaceCount = 0, index, i = 0;
         for (i = 0; i < trueLength; i++) {
             if (str[i] == ' ') {
