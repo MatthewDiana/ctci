@@ -12,6 +12,9 @@ public class Question4_6 {
     }
 
     public static int findNext(TreeNodeP<Integer> n) {
+
+        if (n == null) return Integer.MIN_VALUE;
+
         if (n.right != null) {
             TreeNodeP curr = n.right;
             while (curr.left != null) {
