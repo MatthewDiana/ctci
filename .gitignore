@@ -4,6 +4,9 @@
 # User-specific stuff:
 .idea/workspace.xml
 .idea/tasks.xml
+.idea/compiler.xml
+.idea/misc.xml
+.idea/copyright/
 
 # Sensitive or high-churn files:
 .idea/dataSources/
