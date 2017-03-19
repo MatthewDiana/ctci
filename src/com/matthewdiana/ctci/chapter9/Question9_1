@@ -1,0 +1,7 @@
+I would design a system to serve up the stock data through HTTP to a web interface. This would allow the client
+to access the data on (basically) any machine. It would also scale well as the number of clients uses the system
+increases. Perhaps the front-end would also provide options to export the data to CSV, JSON, XML, raw text, or other
+formats. Another option to consider is to cache the more frequently queried stocks for faster lookup in the backend.
+Our backend could also provide a web API that the clients can use to implement their our applications with the data.
+Using the web interface instead of just providing direct access to our database also provides an extra level of
+security.
