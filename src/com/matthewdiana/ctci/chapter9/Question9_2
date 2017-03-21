@@ -1,0 +1,22 @@
+For a very large social networking site, I would consider storing user data as an undirected graph, where nodes are
+represented by people, and the edges of each node are that person's friends. Each node could store a 'Person'
+class that contains data members for their personal information (name, education, work, D.O.B.), along with the
+adjacency list of friend 'Person' nodes.
+
+class Person {
+    int id;
+    String name;
+    ...
+    Set<Person> friends;
+}
+
+In order to find the shortest path between two people, we could perform a breadth first search, starting at the
+node of P1:
+
+public ArrayList<Person> shortestPathBetween(Person p1, Person p2) {
+    return shortestPathBetween(p1, p2, new ArrayList<Person>());
+}
+
+private ArrayList<Person> shortestPathBetween(Person p1, Person p2, List<Person> path) {
+   ...
+}
