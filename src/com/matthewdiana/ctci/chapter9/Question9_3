@@ -1,0 +1,9 @@
+If I were to design a web crawler, I would store every URL I visit into a set (i.e. Set<URL> visited) to avoid infinite loops. For every URL that I read from my queue, I would check
+to see if the URL is already contained in my visited set. This can be done using something like a bloom filter. If it is, I would ignore it, otherwise I would visit it. I could enhance this to include some kind of 'dateVisited' data member
+to my URL class, and if the date visited is too stale (using some threshold), I would visit/parse the page data again. Storing all of these URLs would require a lot of storage, so we would probably
+need to utilize the disk. Instead of storing the full URL, we can store the checksum or a shortened version of the URL. We can then compute this checksum for every new URL and see if it
+exists in our table.
+
+If I wanted to ensure that I re-visit a URL every time it is mentioned, without utilizing this global 'visited' set, I could have each URL object include its own set of URLs that are
+mentioned on that page. For our global set, we would have to store the data on the disk / in a database (assuming we're visiting many URLs). For these local sets, they would be stored
+in the runtime cache, so lookup times would be fast.
