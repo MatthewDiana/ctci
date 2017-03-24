@@ -1,0 +1,7 @@
+10 billion URLs would most likely be way too big to store in memory. If it were possible, we could just a hash set and
+linearly iterate over each URL and add it to the set. If at any point we come across a URL that is already in the set,
+we can mark that as a dup.
+
+Since we probably will have to use disk storage, we could iterate through our 10 billion URLs and run each URL through
+a hash function to split it into 10,000 somewhat equally-sized lists (i.e. x.hashCode() % 10,000). We then iterate
+through these 10,000 lists and use a hash table on each of them to check for duplicates.
